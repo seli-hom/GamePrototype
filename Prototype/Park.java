@@ -2,24 +2,38 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Park here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Park is where the hunter tries to defend himself against the squirrel throwing nuts at him
+ * @author (Selihom Efrem Ogbe) 
+ * @version (19/04/2024)
  */
 public class Park extends World
 {
-    private long lastFrameTimeMs;
+    private long lastFrameTimeMS;
     private double timeStepDuration;
 
-    /**
-     * Constructor for objects of class Park.
-     * 
-     */
     public Park()
-    {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+    {
+        super(600,400,1,false);
+        
+        lastFrameTimeMS = System.currentTimeMillis();
+        timeStepDuration = 1.0 /60;
         prepare();
+    }
+    
+    public void started()
+    {
+        lastFrameTimeMS = System.currentTimeMillis();
+    }
+    
+    public void act()
+    {
+        timeStepDuration = (System.currentTimeMillis()  - lastFrameTimeMS) / 1000.0;
+        lastFrameTimeMS = System.currentTimeMillis();
+    }
+    
+    public double getTimeStepDuration()
+    {
+        return timeStepDuration;
     }
     
     /**
